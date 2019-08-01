@@ -14,7 +14,7 @@ ZSH_THEME="random"
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
- ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" "bira" "bureau" "dogenpunk" "crunch" "darkblood" "gnzh" "lambda" "muse" "pygmalion" "refined" )
+ ZSH_THEME_RANDOM_CANDIDATES=( "agnoster" "bureau" "crunch" "gnzh" "muse" "pygmalion" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -78,9 +78,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
-   export EDITOR='vim'
+   export EDITOR='nvim'
  else
-   export EDITOR='mvim'
+   export EDITOR='nvim'
  fi
 
 # Compilation flags
@@ -109,6 +109,14 @@ if [ -x /usr/games/cowsay -a -x /usr/games/fortune -a -x /usr/bin/figlet ]; then
         figlet -f shadow BloodyPep | lolcat
     fi
 fi
+# Powerline
+if [ -f /usr/share/powerline/bindings/bash/powerline.sh ]; then
+  powerline-daemon -q
+  POWERLINE_BASH_CONTINUATION=1
+  POWERLINE_BASH_SELECT=1
+  source /home/pepe/.local/lib/python2.7/site-packages/powerline/bindings/bash/powerline.sh
+fi
+
 
 # Handy aliases exported from .bashrc
 alias grep='grep --color=auto'
@@ -126,8 +134,10 @@ alias weather='curl wttr.in'
 alias set_display='bash ~/RandomScripts/set_display.sh'
 alias free_swp='bash ~/RandomScripts/free_swp.sh'
 alias DOOM='bash ~/RandomScripts/RunDoomd.sh'
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+alias vi='nvim'
+
+export EDITOR=nvim
+export VISUAL=nvim
 
 cheat.sh()
 {
@@ -154,13 +164,13 @@ _cheatsh_complete_cheatsh()
  
 compdef _cheatsh_complete_cheatsh cheat.sh
 
-
+bindkey \^u backward-kill-line
 
 if [ -f '/home/pepe/bin/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/pepe/bin/google-cloud-sdk/completion.zsh.inc'; fi
+
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/pepe/bin/google-cloud-sdk/path.zsh.inc' ]; then source '/home/pepe/bin/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/home/pepe/google-cloud-sdk/path.zsh.inc' ]; then . '/home/pepe/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/home/pepe/bin/google-cloud-sdk/completion.zsh.inc' ]; then source '/home/pepe/bin/google-cloud-sdk/completion.zsh.inc'; fi
-
+if [ -f '/home/pepe/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/pepe/google-cloud-sdk/completion.zsh.inc'; fi

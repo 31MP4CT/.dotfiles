@@ -8,8 +8,8 @@ nnoremap n nzzzv
 nnoremap N Nzzzv
 
 " Enable folding"
- set foldmethod=indent
- set foldlevel=99
+set foldmethod=indent
+set foldlevel=99
 
 " Set up plugins using vim-plug"
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -41,7 +41,18 @@ Plug 'mfukar/robotframework-vim'
 "Go support"
 Plug 'fatih/vim-go'
 
+"Color Scheme"
+Plug 'flazz/vim-colorschemes'
+
 " Initialize plugin system
 
 call plug#end()
 
+" Powerline Font path
+set rtp+=/home/pepe/.local/lib/python2.7/site-packages/powerline/bindings/vim/
+set laststatus=2
+set t_Co=256
+
+set rtp=d
+
+colorscheme base16-onedark
